@@ -1,0 +1,85 @@
+########################################################################################
+### author  : Aswindo Putra
+### file    : Tutorial Installasi Cluster(3 node)
+### deskrip : 1. Instalasi Cluster miniatur dengan 8 prosesor
+###           2. Di install pada sisten Operasi Centos
+###           3. Di install di virtual server
+###           4. Installasi dimulai dari Minimal Install
+### requirement 
+### 1. Install OS (pada installasi ini menggunakan OS Centos 7.2)
+### 2. Pastikan semua hardware tercukupi (Lan/internet, PC lebih dari 1, ram bagus, dll)
+### 3. Dapat menggunakan virtual box atau virtual server
+### 4. bisa menggunakan VPS 
+### 5. Referensi yang banyak
+### 6. Kuatkan niat dan mental serta berdoalah 
+########################################################################################
+
+### 1. Gunakan Proxy jika ada 
+
+export http_proxy=http://proxy:port/
+export https_proxy=http://proxy:port/
+export ftp_proxy=http://proxy:port/
+
+### 2. Install nano (editor terminal)
+
+yum install nano
+
+### 3. Lakukan update pada centosnya, install development tools, install libX
+### biasanya suka ada depedensi ke libX 
+
+yum update
+yum group install development tools
+yum install lib*
+
+### 4. Setup Host
+
+su
+nano /etc/hosts
+
+### lalu tambkah hostsnya berdasarkan ip yang akan di config
+### lakukan disemua node
+10.30.40.110  head
+10.30.40.111  compute1
+10.30.40.112  compute2
+
+
+### 5. buat direktori share data dengan NFS *Bukan need for speed :D
+### Silahkan masuk ke superuser 
+### Lakukan di semua node yang akan di config 
+
+cd /
+mkdir share
+chmod 777 share
+
+### 6. Setting NFS 
+### terlebih dahulu install nfs-utils
+
+su
+yum install nfs-utils
+yum install rpcbind
+
+### 6.1 enable service nfs
+### lakukan disemua node
+# enable service
+systemctl enable rpc-bind
+systemctl enable nfs-server
+systemctl start rpc-bind
+systemctl start nfs-server
+
+#check status service
+systemctl status rpc-bind
+systemctl status nfs-server 
+systemctl status nfs-lock
+systemctl status nfs-idmap
+
+###
+
+
+
+
+
+
+
+
+
+
