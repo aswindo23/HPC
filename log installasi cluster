@@ -1,0 +1,57 @@
+###
+
+
+
+
+### Log enable service untuk nfs 
+
+[root@head aswindo]# systemctl status rpcbind
+● rpcbind.service - RPC bind service
+   Loaded: loaded (/usr/lib/systemd/system/rpcbind.service; indirect; vendor preset: enabled)
+   Active: active (running) since Thu 2017-03-16 04:27:04 WIB; 10min ago
+ Main PID: 8711 (rpcbind)
+   CGroup: /system.slice/rpcbind.service
+           └─8711 /sbin/rpcbind -w
+
+Mar 16 04:27:04 head.cat.telkomuniversity.ac.id systemd[1]: Starting RPC bind service...
+Mar 16 04:27:04 head.cat.telkomuniversity.ac.id systemd[1]: Started RPC bind service.
+[root@head aswindo]# 
+
+[root@head aswindo]# systemctl status nfs-server
+● nfs-server.service - NFS server and services
+   Loaded: loaded (/usr/lib/systemd/system/nfs-server.service; enabled; vendor preset: disabled)
+   Active: active (exited) since Thu 2017-03-16 04:33:29 WIB; 6min ago
+ Main PID: 8983 (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/nfs-server.service
+
+Mar 16 04:33:29 head.cat.telkomuniversity.ac.id systemd[1]: Starting NFS server and services...
+Mar 16 04:33:29 head.cat.telkomuniversity.ac.id systemd[1]: Started NFS server and services.
+[root@head aswindo]# 
+
+
+[root@head aswindo]# systemctl status nfs-lock
+● rpc-statd.service - NFS status monitor for NFSv2/3 locking.
+   Loaded: loaded (/usr/lib/systemd/system/rpc-statd.service; static; vendor preset: disabled)
+   Active: active (running) since Thu 2017-03-16 04:33:29 WIB; 7min ago
+ Main PID: 8971 (rpc.statd)
+   CGroup: /system.slice/rpc-statd.service
+           └─8971 /usr/sbin/rpc.statd --no-notify
+
+Mar 16 04:33:28 head.cat.telkomuniversity.ac.id systemd[1]: Starting NFS status monitor for NFSv2/3 locking....
+Mar 16 04:33:28 head.cat.telkomuniversity.ac.id rpc.statd[8971]: Version 1.3.0 starting
+Mar 16 04:33:28 head.cat.telkomuniversity.ac.id rpc.statd[8971]: Flags: TI-RPC
+Mar 16 04:33:28 head.cat.telkomuniversity.ac.id rpc.statd[8971]: Initializing NSM state
+Mar 16 04:33:29 head.cat.telkomuniversity.ac.id systemd[1]: Started NFS status monitor for NFSv2/3 locking..
+[root@head aswindo]# 
+[root@head aswindo]# systemctl status nfs-idmap
+● nfs-idmapd.service - NFSv4 ID-name mapping service
+   Loaded: loaded (/usr/lib/systemd/system/nfs-idmapd.service; static; vendor preset: disabled)
+   Active: active (running) since Thu 2017-03-16 04:33:29 WIB; 7min ago
+ Main PID: 8977 (rpc.idmapd)
+   CGroup: /system.slice/nfs-idmapd.service
+           └─8977 /usr/sbin/rpc.idmapd
+
+Mar 16 04:33:29 head.cat.telkomuniversity.ac.id systemd[1]: Starting NFSv4 ID-name mapping service...
+Mar 16 04:33:29 head.cat.telkomuniversity.ac.id systemd[1]: Started NFSv4 ID-name mapping service.
+[root@head aswindo]# 
+
