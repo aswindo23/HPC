@@ -51,6 +51,10 @@ sudo /usr/sbin/visudo
 anggora ALL=(ALL)     ALL
 
 
+# 7. Buat folder NFS
+
+mkdir export
+
 
 
 
