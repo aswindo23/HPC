@@ -1,1 +1,60 @@
+###########
+
+
+##########
+
+# 1. Langkah pertama lakukan setting proxy dapat di lihat dilink
+# 2. Lakukan update pada centosnya
+
+yum check-update
+yum install epel-release
+yum update -y
+yum install sshpass
+yum groupinstall "development tools"
+
+# 3. Langkah ke tiga lakukan ssh tanpa password
+
+su 
+ssh-keygen -t rsa
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@headnode
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@node1
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@node2 
+                                          .
+                                          .
+                                          .
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@node(n)                                          
+chmod 0600 ~/.ssh/authorized_keys
+exit
+
+# 4. buat 4 buath direktory di folder home ( Lakukan di semua node)
+
+mkdir administrator
+mkdir centos
+mkdir base
+mkdir user
+
+# 5. buatlah user untuk admin dan buat group admin serta user ( Lakukan di semua node)
+groupadd admin
+groupadd user
+
+useradd -m -d /home/adminstrator/anggora -g admin anggora
+passwd anggora
+
+# 6. Langkah selanjutnya silahkan beri akses root ke user admin yang akan kita bikin karena admin nantinya akan melakukan 
+# maintenance jadi harus bisa root
+
+su 
+sudo /usr/sbin/visudo
+
+# lalu tambahkan perintah dibawah ini di command run anywhy tepatnya dibawah root
+
+anggora ALL=(ALL)     ALL
+
+
+
+
+
+
+
+
 
